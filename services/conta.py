@@ -1,27 +1,18 @@
 from services.cartao import Cartao
-from integration.transacoes_pluggy import pegar_transacoes
+from integration.transacoes_pluggy import pegar_faturas
 from rich import print
 
 class Conta:
     def __init__(self):
         self.cartoes = []
+        self.fatura_atual, self.historico_faturas = pegar_faturas()
 
     def adicionar_cartao(self, numero_cartao, usuario):
         if usuario.strip() == "" or numero_cartao.strip() == "":
             return "Erro, dados inválidos."
 
-        cartao = Cartao(numero_cartao, usuario)
+        cartao = Cartao(numero_cartao, usuario, self.fatura_atual, self.historico_faturas)
         self.cartoes.append(cartao)
- 
-        
-    def separar_transacoes(self, transacoes):
-        for transacao in transacoes:
-            numero_cartao = transacao["cardNumber"]
-            for cartao in self.cartoes:
-                if numero_cartao == cartao.numeros:
-                    cartao.transacoes.append(transacao)
-            
-
 
     
     def exibir_cartoes(self):
@@ -31,16 +22,18 @@ class Conta:
             cartoes.append({
                 "numero":cartao.numeros,
                 "usuario":cartao.usuario,
-                "fatura":cartao.fatura,
-                "transacoes":cartao.transacoes
+                "valor_fatura_atual":cartao.valor_fatura_atual,
+                "fatura_atual":cartao.fatura_atual,
+                "historico_faturas":cartao.historico_faturas
             })
 
         return cartoes
 
 
-transacoes = pegar_transacoes()
 c1 = Conta() 
-c1.adicionar_cartao("4078", "Emilly")
-c1.adicionar_cartao("0478", "Wadisson")  
-c1.separar_transacoes(transacoes)
+c1.adicionar_cartao("1985", "Emilly")
+c1.adicionar_cartao("6603", "Wadisson")
+c1.adicionar_cartao("8032", "Wadisson")
+c1.adicionar_cartao("4078", "Wadisson") 
+c1.adicionar_cartao("0478", "Wadisson")   
 print(c1.exibir_cartoes())
