@@ -1,7 +1,11 @@
 from flask import Flask
 import os
+from database.tabelas import iniciar_banco
+
+iniciar_banco()
 
 app = Flask(__name__)
+
 
 
 @app.route("/")

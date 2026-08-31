@@ -62,12 +62,14 @@ def pegar_transacoes():
 
     dados = dados["results"]
 
-    transacoes = []
+    transacoes_fechadas = []
+    
+    transacoes_em_aberto = []
 
     for transacao in dados:
         if transacao["type"] == "DEBIT":
             try:
-                transacoes.append({
+                transacoes_fechadas.append({
                     "id":transacao["id"],
                     "description":transacao["description"],
                     "amount":transacao["amount"],
@@ -77,7 +79,7 @@ def pegar_transacoes():
                     "billId":transacao["creditCardMetadata"]["billId"],
                 })
             except KeyError:
-                transacoes.append({
+                transacoes_em_aberto.append({
                     "id":transacao["id"],
                     "description":transacao["description"],
                     "amount":transacao["amount"],
@@ -89,17 +91,13 @@ def pegar_transacoes():
                 })
 
 
-    return transacoes[:10]
+    return transacoes_fechadas, transacoes_em_aberto
 
 
 
 def pegar_faturas():
     from datetime import datetime
-    data_atual = datetime.now()
-    mes_ano = f"{data_atual.year}-{data_atual.month:02d}"
-    data_fatura_atual = data_atual.month + 1
-    if data_fatura_atual == 13:
-        data_fatura_atual = 1
+        
     url = "https://api.pluggy.ai/bills"
 
     headers = {
@@ -116,36 +114,12 @@ def pegar_faturas():
     dados = response.json()
 
     historico_faturas = []
-    fatura_atual = {
-        "fatura_mes":data_fatura_atual,
-        "totalAmount":0,
-        "transactions":[]
-    }
 
     for fatura in dados["results"]:
         historico_faturas.append({
             "id":fatura["id"],
             "dueDate":fatura["dueDate"],
-            "totalAmount":0,
-            "transactions":[]
+            "totalAmount":fatura["totalAmount"]
         })
-    
-    transactions = pegar_transacoes()
-
-    for transaction in transactions:
-        if mes_ano == transaction["billId"]:
-            fatura_atual["transactions"].append(transaction)
-            fatura_atual["totalAmount"] += transaction["amount"]
-            continue
-
-        for fatura in historico_faturas:
-            if fatura["id"] == transaction["billId"]:
-                fatura["transactions"].append(transaction)
-                fatura["totalAmount"] += transaction["amount"]
-                break
-                 
         
-
-    return fatura_atual, historico_faturas
-
-
+    return historico_faturas
