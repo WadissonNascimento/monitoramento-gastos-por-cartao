@@ -14,20 +14,5 @@ class Conta:
 
         inserir_cartao_banco(card_number, user)
         
-
-        
-
-    
-    def exibir_cartoes(self):
-        cartoes = []
-
-        for cartao in self.cartoes:
-            cartoes.append({
-                "numero":cartao.numeros,
-                "usuario":cartao.usuario,
-                "valor_fatura_atual":cartao.valor_fatura_atual,
-                "fatura_atual":cartao.fatura_atual,
-                "historico_faturas":cartao.historico_faturas
-            })
-
-        return cartoes
+    def listar_cartoes(self):
+        pass
