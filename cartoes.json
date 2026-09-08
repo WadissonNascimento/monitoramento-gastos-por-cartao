@@ -1,0 +1,320 @@
+[
+    {
+        "numeros": "6603",
+        "usuario": "Wadisson",
+        "fatura_atual": {
+            "mes-fatura": 10,
+            "valor": 806.08,
+            "transacoes": [
+                {
+                    "id": "8fe4629e-e416-4162-84cf-b45f02f2f3fe",
+                    "description": "DL*UberRides",
+                    "amount": 39.95,
+                    "date": "2026-09-05T18:10:38.000Z",
+                    "category": "Taxi and ride-hailing",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "07e763ed-8ba1-4801-8da2-d8f72868d1b9",
+                    "description": "64801486Claudiana",
+                    "amount": 16.26,
+                    "date": "2026-09-05T08:15:31.000Z",
+                    "category": "Eating out",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "9058bfb4-b1a9-4e06-8e98-156350272c8b",
+                    "description": "OBRAMAX ATACADO DE CON",
+                    "amount": 16.99,
+                    "date": "2026-09-05T06:11:00.000Z",
+                    "category": "Houseware",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "81293023-d593-43ed-a78f-694bffa509d7",
+                    "description": "DOCES PALLOS LTDA",
+                    "amount": 5.99,
+                    "date": "2026-09-04T16:33:14.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "a4c1af62-6722-4d1f-a078-340ab4066aa4",
+                    "description": "PG *SPPAY LEMONENGLISH",
+                    "amount": 369,
+                    "date": "2026-09-03T16:09:29.000Z",
+                    "category": "School",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "baa47098-3fc3-4cc6-8bae-5348cd3995fa",
+                    "description": "PG *SPPAY LEMONENGLISH",
+                    "amount": 249.25,
+                    "date": "2026-09-03T15:03:33.000Z",
+                    "category": "School",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "36fb4855-781e-4085-9381-0f84dc3d3ba8",
+                    "description": "SHOPEE *PuroBrindes",
+                    "amount": 64.29,
+                    "date": "2026-09-01T17:41:41.000Z",
+                    "category": "Services",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "c20c9074-4987-4325-be54-369d0ea8cd07",
+                    "description": "OPENAI *CHATGPT SUBSCR",
+                    "amount": 42.85,
+                    "date": "2026-09-01T14:06:16.000Z",
+                    "category": "Digital services",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "931255c4-4ba8-4868-b670-09ed6abfdebb",
+                    "description": "IOF DESPESA NO EXTERIOR",
+                    "amount": 1.5,
+                    "date": "2026-09-01T14:06:16.000Z",
+                    "category": "Tax on financial operations",
+                    "cardNumber": "6603",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                }
+            ]
+        }
+    },
+    {
+        "numeros": "1985",
+        "usuario": "Emilly",
+        "fatura_atual": {
+            "mes-fatura": 10,
+            "valor": 235.62,
+            "transacoes": [
+                {
+                    "id": "f8774d7a-d206-402c-be05-91068d568373",
+                    "description": "LOPES BARUERI",
+                    "amount": 27.78,
+                    "date": "2026-09-04T23:15:37.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "15e043fa-7ef2-4e02-861e-9a03a16ec87a",
+                    "description": "SilvioJoseLopesDe",
+                    "amount": 40,
+                    "date": "2026-09-04T20:01:21.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "35516c97-46cf-4ff0-8ead-890db0fee9e2",
+                    "description": "EMV CPTM*141859836",
+                    "amount": 5.4,
+                    "date": "2026-09-03T11:27:23.000Z",
+                    "category": "Public transportation",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "a1bda3be-4309-454b-9c21-f3c76457c8a1",
+                    "description": "MP *DONNAJEH",
+                    "amount": 9,
+                    "date": "2026-09-03T11:26:29.000Z",
+                    "category": "Shopping",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "c6de0f00-0fee-4388-8b9e-20761ac8bb32",
+                    "description": "SONDA BARUERI",
+                    "amount": 5.39,
+                    "date": "2026-09-03T11:22:54.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "82bffa7d-5c51-4e57-bf66-e64f7031dbe5",
+                    "description": "MEGA SOBREMESA",
+                    "amount": 28.5,
+                    "date": "2026-09-03T10:57:36.000Z",
+                    "category": "Eating out",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "2607c75c-6551-4a6c-b73c-3029a0e18404",
+                    "description": "MP *TIORICARDODOC",
+                    "amount": 5,
+                    "date": "2026-09-03T10:13:45.000Z",
+                    "category": "Shopping",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "e1e4794a-3542-41c8-ab09-550e4c4d1b89",
+                    "description": "62190906Jonathan",
+                    "amount": 10,
+                    "date": "2026-09-02T17:20:38.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "8ae62fc3-ebe8-404a-9939-fa9ab5e5be54",
+                    "description": "SHOPEE *Logbox",
+                    "amount": 26.1,
+                    "date": "2026-09-02T15:52:47.000Z",
+                    "category": "Telecommunications",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "1377ceba-0ac2-48cc-9e9b-a500a272eca8",
+                    "description": "DL*UberRides",
+                    "amount": 35.95,
+                    "date": "2026-09-01T18:56:59.000Z",
+                    "category": "Taxi and ride-hailing",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "d82c5066-4348-489d-8901-18270f0039f6",
+                    "description": "CASA DE SALGADOS PIMEN",
+                    "amount": 15,
+                    "date": "2026-08-31T19:46:33.000Z",
+                    "category": "Eating out",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-08"
+                },
+                {
+                    "id": "2f57603f-7f14-4ef8-9d7b-a7923979ab04",
+                    "description": "CASA DE SALGADOS PIMEN",
+                    "amount": 12,
+                    "date": "2026-08-31T19:46:00.000Z",
+                    "category": "Eating out",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-08"
+                },
+                {
+                    "id": "69c84633-efb8-41c5-83f2-514131c062f9",
+                    "description": "SHOPEE *TUVMAKE",
+                    "amount": 15.5,
+                    "date": "2026-08-31T16:52:45.000Z",
+                    "category": "Shopping",
+                    "cardNumber": "1985",
+                    "status": "PENDING",
+                    "billId": "2026-08"
+                }
+            ]
+        }
+    },
+    {
+        "numeros": "8032",
+        "usuario": "Emilly",
+        "fatura_atual": {
+            "mes-fatura": 10,
+            "valor": 75.7,
+            "transacoes": [
+                {
+                    "id": "6c31ed22-3c12-4d2b-9dfd-9f8e2c3846b6",
+                    "description": "MP *ADEGAKINDO",
+                    "amount": 4,
+                    "date": "2026-09-04T18:28:46.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "8032",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "4253bbed-41b9-46c5-8de7-c51c157ad83c",
+                    "description": "CACAU SHOW",
+                    "amount": 7.28,
+                    "date": "2026-09-03T20:17:05.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "8032",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "8dfc06e4-fb40-45b0-b2c3-bba079a1d55f",
+                    "description": "LOPES JANDIRA",
+                    "amount": 8.88,
+                    "date": "2026-09-03T20:12:23.000Z",
+                    "category": "Groceries",
+                    "cardNumber": "8032",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "e5d3ae16-c924-44ee-8490-375baa2271e5",
+                    "description": "TikTok Shop *Skandallo",
+                    "amount": 39.54,
+                    "date": "2026-09-01T21:44:08.000Z",
+                    "category": "Clothing",
+                    "cardNumber": "8032",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                },
+                {
+                    "id": "887c7f9c-7528-4aba-84a4-aa012d98f23b",
+                    "description": "64801486Claudiana",
+                    "amount": 16,
+                    "date": "2026-09-01T09:33:06.000Z",
+                    "category": "Eating out",
+                    "cardNumber": "8032",
+                    "status": "PENDING",
+                    "billId": "2026-09"
+                }
+            ]
+        }
+    },
+    {
+        "numeros": "0478",
+        "usuario": "Wadisson",
+        "fatura_atual": {
+            "mes-fatura": 10,
+            "valor": 0,
+            "transacoes": []
+        }
+    },
+    {
+        "numeros": "4078",
+        "usuario": "Wadisson",
+        "fatura_atual": {
+            "mes-fatura": 10,
+            "valor": 0,
+            "transacoes": []
+        }
+    }
+]

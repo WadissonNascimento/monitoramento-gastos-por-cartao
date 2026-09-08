@@ -96,7 +96,6 @@ def pegar_transacoes():
 
 
 def pegar_faturas():
-    from datetime import datetime
         
     url = "https://api.pluggy.ai/bills"
 

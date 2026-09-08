@@ -1,4 +1,5 @@
 from database.conexao import conexao_banco
+from integration.transacoes_pluggy import pegar_faturas
 
 def inserir_faturas(faturas):
     conexao, cursor = conexao_banco()

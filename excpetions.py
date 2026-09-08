@@ -3,3 +3,6 @@ class DadosInvalidos(Exception):
 
 class CartaoJaCadastrado(Exception):
     pass
+
+class ErroInesperado(Exception):
+    pass

@@ -6,5 +6,10 @@ class Cartao:
         self.historico_faturas = historico_faturas
 
                         
-
+    def to_dict(self):
+        return {
+            "numeros": self.numeros,
+            "usuario": self.usuario,
+            "fatura_atual": self.fatura_atual
+        }
     
