@@ -8,7 +8,7 @@ def conexao_banco():
     try:
         conexao = psycopg2.connect(
             host="localhost",
-            database="monitoramento_de_cartao",
+            database="sistema_financeiro",
             user="postgres",
             password=os.getenv("SENHA_BD"),
             port="5432"
@@ -21,5 +21,4 @@ def conexao_banco():
     except Exception as erro:
         print(f"Erro ao conectar ao banco: {erro}")
         return None, None
-
 

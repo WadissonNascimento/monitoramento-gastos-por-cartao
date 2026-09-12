@@ -24,7 +24,27 @@ def inserir_cartao_banco(user, card_number):
     finally:
         conexao.close()
         cursor.close()
-    
+
+def excluir_cartao_banco(card_number):
+    conexao, cursor = conexao_banco()
+
+    try:
+        cursor.execute('''
+        DELETE FROM cartoes
+        WHERE card_number = %s
+        ''',
+        (card_number,))
+
+        conexao.commit()
+        return f"Cartão excluido com sucesso.", True
+
+    except Exception as erro:
+        conexao.rollback()
+        return f"Erro ao excluir cartão: {str(erro)}", False
+
+    finally:
+        conexao.close()
+        cursor.close()
     
 def verificar_cartao_existe(card_number):
     conexao, cursor = conexao_banco()

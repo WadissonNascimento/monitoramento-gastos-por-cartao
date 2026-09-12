@@ -1,6 +1,5 @@
 from flask import Blueprint, request
-from services.conta import verificar_cartao
-from services.cartao import criar_cartoes
+from services.cartao import criar_cartoes, excluir_cartao, cadastrar_cartao
 import json
 from excpetions import *
 
@@ -14,13 +13,13 @@ def adicionar_cartao():
     card_number = dados.get("card_number")
     
     try:
-        mensagem, sucesso = verificar_cartao(user, card_number)
+        mensagem, sucesso = cadastrar_cartao(user, card_number)
 
         if sucesso:
-            return {"mensagem": "Cartão cadastrado com sucesso."}, 201
+            return {"mensagem": mensagem}, 201
         
         else:
-            return {"erro": "Erro ao inserir cartão no banco"}, 500
+            return {"erro": mensagem}, 500
 
     except DadosInvalidos as erro:
         return {"erro": str(erro)}, 400
@@ -35,9 +34,6 @@ def listar_cartoes():
         cartoes, sucesso = criar_cartoes()
         
         dados = [cartao.to_dict() for cartao in cartoes]
-        
-        with open("cartoes.json", "w", encoding="utf-8") as arquivo:
-            json.dump(dados, arquivo, ensure_ascii=False, indent=4)
             
         if sucesso:
             return dados 
@@ -47,4 +43,27 @@ def listar_cartoes():
     
     except ErroInesperado as erro:
         return {"erro":str(erro)},500
+
+@cartoes_bp.delete("/cartoes")
+def deletar_cartao():
+    try:
+        dados = request.get_json()
+
+        card_number = dados.get("card_number")
+
+        mensagem, sucesso = excluir_cartao(card_number)
+
+        if sucesso:
+            return {"", 204}
+
+        return {"erro":mensagem}, 500
+
+    except DadosInvalidos as erro:
+        return {"erro":str(erro)}, 400
+
+    except CartaoNaoExiste as erro:
+        return {"erro":str(erro)}, 404
+
+        
+
     

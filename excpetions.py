@@ -6,3 +6,6 @@ class CartaoJaCadastrado(Exception):
 
 class ErroInesperado(Exception):
     pass
+
+class CartaoNaoExiste(Exception):
+    pass

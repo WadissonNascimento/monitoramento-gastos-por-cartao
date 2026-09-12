@@ -1,9 +1,13 @@
 from models.cartao import Cartao
 from database.cartao import buscar_cartoes, buscar_historico_faturas
+from database.conta import verificar_cartao_existe, excluir_cartao_banco
 from integration.transacoes_pluggy import pegar_transacoes
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from excpetions import *
+from excpetions import *
+from database.conta import verificar_cartao_existe, inserir_cartao_banco
+
 
 def criar_cartoes():
     cartoes, sucesso_cartoes = buscar_cartoes()
@@ -57,6 +61,33 @@ def criar_cartoes():
         return objetos, False
             
 
+def excluir_cartao(card_number):
+    if card_number.strip() == "" or not card_number:
+        raise DadosInvalidos("Cartão inválido.")
+
+    cartao_existe = verificar_cartao_existe(card_number)
+
+    if cartao_existe:
+        mensagem, sucesso = excluir_cartao_banco(card_number)
+
+        return mensagem, sucesso
+
+    raise CartaoNaoExiste("Cartão não cadastrado.")
+
+
+def cadastrar_cartao(user, card_number):
+    if not user or not card_number:
+        raise DadosInvalidos("Usuário ou cartão inválido.")
     
-            
+    if user.strip() == "" or card_number.strip() == "":
+        raise DadosInvalidos("Usuário ou cartão inválido.")
+    
+    if verificar_cartao_existe(card_number):
+        raise CartaoJaCadastrado("O cartão ja está cadastrado.")
+    
+    else:
+        mensagem, sucesso = inserir_cartao_banco(user, card_number)
+        
+        return mensagem, sucesso
+        
         
