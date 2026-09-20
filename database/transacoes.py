@@ -1,6 +1,6 @@
 from database.conexao import conexao_banco
 
-def inserir_transacoes_banco(transacoes_fechadas):
+def atualizar_transacoes_banco(transacoes_fechadas):
     conexao,  cursor = conexao_banco()
     
     try:
@@ -22,10 +22,13 @@ def inserir_transacoes_banco(transacoes_fechadas):
             
         
         conexao.commit()
+
+        return True
            
     except Exception as erro:
         conexao.rollback()
-        print(f"Erro ao inserir transações ao banco: {str(erro)} ")
+        print(f"Erro ao inserir transações ao banco: {str(erro)} ", False)
+        return False
     
     
     finally:

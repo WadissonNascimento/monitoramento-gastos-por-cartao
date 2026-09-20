@@ -32,12 +32,12 @@ def adicionar_cartao():
 def listar_cartoes(): 
     try: 
         cartoes, sucesso = criar_cartoes()
-        
-        dados = [cartao.to_dict() for cartao in cartoes]
             
         if sucesso:
-            return dados 
+            dados = [cartao.to_dict() for cartao in cartoes]
+            return dados, 200
         
+
         else:
             return {"erro":"erro inesperado"}, 500
     
@@ -54,7 +54,7 @@ def deletar_cartao():
         mensagem, sucesso = excluir_cartao(card_number)
 
         if sucesso:
-            return {"", 204}
+            return "", 204
 
         return {"erro":mensagem}, 500
 

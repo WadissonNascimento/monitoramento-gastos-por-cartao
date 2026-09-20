@@ -1,7 +1,7 @@
 from database.conexao import conexao_banco
 from integration.transacoes_pluggy import pegar_faturas
 
-def inserir_faturas(faturas):
+def atualizar_faturas(faturas):
     conexao, cursor = conexao_banco()
     
     try:
@@ -19,11 +19,12 @@ def inserir_faturas(faturas):
         
         conexao.commit()
         
-        return 200
+        return True
     
     except Exception as erro:
         conexao.rollback()
         print(f"Erro ao inserir informações na tabela: {erro}")
+        return False
     
     finally:
         conexao.close()

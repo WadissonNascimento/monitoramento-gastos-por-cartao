@@ -8,7 +8,7 @@ def conexao_banco():
     try:
         conexao = psycopg2.connect(
             host="localhost",
-            database="sistema_financeiro",
+            database="monitoramento_de_cartao_tests",
             user="postgres",
             password=os.getenv("SENHA_BD"),
             port="5432"

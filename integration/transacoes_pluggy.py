@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import requests
 import os
 from rich import print
+from excpetions import ErroInesperado
 
 load_dotenv()
 
@@ -17,10 +18,18 @@ def pegar_apiKey():
         "content-type": "application/json"
     }
 
-    response = requests.post(url, json=payload, headers=headers)
+    try:
+        response = requests.post(url, json=payload, headers=headers, timeout=15)
 
-    dados =  response.json()
-    return dados["apiKey"]
+        response.raise_for_status()
+        dados =  response.json()
+        return dados["apiKey"]
+
+    except requests.exceptions.Timeout:
+        raise ErroInesperado("A Pluggy demorou para responder.")
+
+    except requests.exceptions.RequestException:
+        raise ErroInesperado("Não foi possível consultar a Pluggy.")
 
 def pegar_id_cartao():
     api_key = pegar_apiKey()
@@ -36,34 +45,61 @@ def pegar_id_cartao():
         "itemId":os.getenv("ITEM_ID"),
         "type":"CREDIT"
     }
+    try:
+        response = requests.get(url, headers=headers, params=params, timeout=15)
 
-    response = requests.get(url, headers=headers, params=params)
+        response.raise_for_status()
+        dados = response.json()
 
-    dados = response.json()
+        return dados["results"][0]["id"]
 
-    return dados["results"][0]["id"]
+    except requests.exceptions.Timeout:
+        raise ErroInesperado("A Pluggy demorou para responder.")
 
+    except requests.exceptions.RequestException:
+        raise ErroInesperado("Não foi possível consultar a Pluggy.")
 
 def pegar_transacoes():
-    url = "https://api.pluggy.ai/v2/transactions"
+    try:
+        url_base = "https://api.pluggy.ai/v2/transactions"
 
-    headers = {
-        "accept": "application/json",
-        "X-API-KEY": pegar_apiKey()
-    }
-    params = {
-        "accountId":pegar_id_cartao()
-    }
+        url = url_base
 
-    response = requests.get(url, headers=headers, params=params)
+        headers = {
+            "accept": "application/json",
+            "X-API-KEY": pegar_apiKey()
+        }
+        params = {
+            "accountId":pegar_id_cartao()
+        }
 
+        dados = []
 
-    dados = response.json()
+        while True:
+            response = requests.get(url, headers=headers, params=params, timeout=15)
 
-    dados = dados["results"]
+            
+            response.raise_for_status()
+            resposta = response.json()
+
+            dados.extend(resposta["results"])
+
+            proxima_pagina = resposta["next"]
+
+            if not proxima_pagina:
+                break
+            
+            url = url_base + proxima_pagina
+            params = None
+
+    except requests.exceptions.Timeout:
+        raise ErroInesperado("A pluggy demorou para responder.")
+
+    except requests.exceptions.RequestException:
+        raise ErroInesperado("Não foi possível consultar a Pluggy.")
 
     transacoes_fechadas = []
-    
+        
     transacoes_em_aberto = []
 
     for transacao in dados:
@@ -91,6 +127,7 @@ def pegar_transacoes():
                 })
 
 
+
     return transacoes_fechadas, transacoes_em_aberto
 
 
@@ -108,9 +145,17 @@ def pegar_faturas():
         "accountId":pegar_id_cartao()
     }
 
-    response = requests.get(url, headers=headers, params=params)
+    try:
+        response = requests.get(url, headers=headers, params=params, timeout=15)
 
-    dados = response.json()
+        response.raise_for_status()
+        dados = response.json()
+
+    except requests.exceptions.Timeout:
+        raise ErroInesperado("A pluggy demorou para responder.")
+
+    except requests.exceptions.RequestException:
+        raise ErroInesperado("Não foi possível consultar a Pluggy.")
 
     historico_faturas = []
 
@@ -122,3 +167,4 @@ def pegar_faturas():
         })
         
     return historico_faturas
+

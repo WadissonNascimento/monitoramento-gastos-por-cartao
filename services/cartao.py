@@ -62,7 +62,10 @@ def criar_cartoes():
             
 
 def excluir_cartao(card_number):
-    if card_number.strip() == "" or not card_number:
+    if not card_number:
+        raise DadosInvalidos("Cartão inválido.")
+
+    if card_number.strip() == "":
         raise DadosInvalidos("Cartão inválido.")
 
     cartao_existe = verificar_cartao_existe(card_number)
