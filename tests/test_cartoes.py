@@ -1,7 +1,7 @@
 from unittest.mock import Mock
 
 import pytest
-
+import os
 from app import app
 from database.conexao import conexao_banco
 from database.conta import inserir_cartao_banco, verificar_cartao_existe
@@ -245,7 +245,12 @@ def test_webhook_falha_ao_buscar_transacoes(client, monkeypatch):
         salvar_transacoes
     )
 
-    response = client.post("/webhook/pluggy")
+    response = client.post(
+        "/webhook/pluggy",
+         headers={
+            "Authorization": os.getenv("WEBHOOK_SECRET")
+        }
+        )
 
     assert response.status_code == 502
     assert response.get_json() == {
@@ -296,6 +301,8 @@ def test_transacoes_pluggy_devolve_mais_de_uma_pagina(monkeypatch):
         ],
         "next": None
     }
+
+
 
     # 2. Evita chamadas reais para autenticação e busca da conta.
     monkeypatch.setattr(

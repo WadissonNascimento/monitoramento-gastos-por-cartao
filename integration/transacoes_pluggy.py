@@ -167,4 +167,3 @@ def pegar_faturas():
         })
         
     return historico_faturas
-
