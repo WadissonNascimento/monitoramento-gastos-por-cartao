@@ -38,11 +38,12 @@ def atualizar_transacões_e_faturas_banco():
 def listar_historico_faturas():
     try: 
         cartoes, sucesso = criar_cartoes()
-            
+
         if sucesso:
             dados = [cartao.historico() for cartao in cartoes]
+
             return dados, 200
-        
+
 
         else:
             return {"erro":"erro inesperado"}, 500

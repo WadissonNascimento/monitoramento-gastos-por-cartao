@@ -11,7 +11,7 @@ from database.conta import verificar_cartao_existe, inserir_cartao_banco
 
 def criar_cartoes():
     cartoes, sucesso_cartoes = buscar_cartoes()
-    
+
     objetos = []
     
     data_atual = datetime.now()

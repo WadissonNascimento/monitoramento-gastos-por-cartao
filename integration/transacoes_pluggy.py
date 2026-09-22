@@ -133,55 +133,63 @@ def pegar_transacoes():
 
 
 def pegar_faturas():
-        
-    url_base = "https://api.pluggy.ai/bills"
 
-    url = url_base
+    url = "https://api.pluggy.ai/bills"
+
     headers = {
         "accept": "application/json",
-        "X-API-KEY":pegar_apiKey()
-        }
+        "X-API-KEY": pegar_apiKey()
+    }
+
+    pagina = 1
 
     params = {
-        "accountId":pegar_id_cartao()
+        "accountId": pegar_id_cartao(),
+        "page": pagina
     }
 
     faturas = []
 
     try:
         while True:
-            response = requests.get(url, headers=headers, params=params, timeout=15)
+
+            params["page"] = pagina
+
+            response = requests.get(
+                url,
+                headers=headers,
+                params=params,
+                timeout=15
+            )
 
             response.raise_for_status()
+
             dados = response.json()
 
             faturas.extend(dados["results"])
-            
-            
 
-            faturas.extend(dados["results"])
-
-            proxima_pagina = dados.get("next")
-
-            if not proxima_pagina:
+            if pagina >= dados["totalPages"]:
                 break
 
-            url = url_base + proxima_pagina
-            params = None
+            pagina += 1
 
     except requests.exceptions.Timeout:
-        raise ErroInesperado("A pluggy demorou para responder.")
+        raise ErroInesperado(
+            "A Pluggy demorou para responder."
+        )
 
     except requests.exceptions.RequestException:
-        raise ErroInesperado("Não foi possível consultar a Pluggy.")
+        raise ErroInesperado(
+            "Não foi possível consultar a Pluggy."
+        )
 
     historico_faturas = []
 
     for fatura in faturas:
         historico_faturas.append({
-            "id":fatura["id"],
-            "dueDate":fatura["dueDate"],
-            "totalAmount":fatura["totalAmount"]
+            "id": fatura["id"],
+            "dueDate": fatura["dueDate"],
+            "totalAmount": fatura["totalAmount"]
         })
-        
+
     return historico_faturas
