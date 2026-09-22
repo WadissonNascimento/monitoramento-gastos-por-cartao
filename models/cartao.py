@@ -12,4 +12,10 @@ class Cartao:
             "usuario": self.usuario,
             "fatura_atual": self.fatura_atual
         }
-    
+
+    def historico(self):
+        return {
+            "numeros": self.numeros,
+            "usuario": self.usuario,
+            "historico_faturas": self.historico_faturas
+        }

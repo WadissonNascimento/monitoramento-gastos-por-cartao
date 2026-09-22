@@ -134,8 +134,9 @@ def pegar_transacoes():
 
 def pegar_faturas():
         
-    url = "https://api.pluggy.ai/bills"
+    url_base = "https://api.pluggy.ai/bills"
 
+    url = url_base
     headers = {
         "accept": "application/json",
         "X-API-KEY":pegar_apiKey()
@@ -145,11 +146,28 @@ def pegar_faturas():
         "accountId":pegar_id_cartao()
     }
 
-    try:
-        response = requests.get(url, headers=headers, params=params, timeout=15)
+    faturas = []
 
-        response.raise_for_status()
-        dados = response.json()
+    try:
+        while True:
+            response = requests.get(url, headers=headers, params=params, timeout=15)
+
+            response.raise_for_status()
+            dados = response.json()
+
+            faturas.extend(dados["results"])
+            
+            
+
+            faturas.extend(dados["results"])
+
+            proxima_pagina = dados.get("next")
+
+            if not proxima_pagina:
+                break
+
+            url = url_base + proxima_pagina
+            params = None
 
     except requests.exceptions.Timeout:
         raise ErroInesperado("A pluggy demorou para responder.")
@@ -159,7 +177,7 @@ def pegar_faturas():
 
     historico_faturas = []
 
-    for fatura in dados["results"]:
+    for fatura in faturas:
         historico_faturas.append({
             "id":fatura["id"],
             "dueDate":fatura["dueDate"],

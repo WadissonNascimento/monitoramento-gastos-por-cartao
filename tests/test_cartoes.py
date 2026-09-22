@@ -344,3 +344,14 @@ def test_transacoes_pluggy_devolve_mais_de_uma_pagina(monkeypatch):
         "https://api.pluggy.ai/v2/transactions" + pagina_1["next"]
     )
     assert segunda_chamada.kwargs["params"] is None
+
+
+def test_request_webhook_Authorization(client):
+    response  = client.post("/webhook/pluggy")
+
+    response1 = client.post("/webhook/pluggy", headers={
+        "Authorization":os.getenv("WEBHOOK_SECRET")
+    })
+
+    assert response.status_code  == 401
+    assert response1.status_code == 200
